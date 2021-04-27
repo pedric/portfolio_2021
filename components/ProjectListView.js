@@ -3,11 +3,12 @@ import ProjectListCard from "./ProjectListCard";
 import styled from "styled-components";
 
 const ProjectListView = ({ projects }) => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(projects.objects);
 
   useEffect(() => {
-    setItems(projects);
-  });
+    setItems(projects.objects);
+    // console.log(items);
+  }, [projects]);
 
   const mousoverHandler = (item) => {
     const projects = [...items];
@@ -20,6 +21,7 @@ const ProjectListView = ({ projects }) => {
   };
 
   const mouseOutHandler = () => {
+    const projects = [...items];
     projects.forEach((project) => {
       project.hover = false;
     });
@@ -28,21 +30,25 @@ const ProjectListView = ({ projects }) => {
 
   return (
     <StyledList>
-      {items.length > 0 &&
-        items.map((project, index) => {
-          return (
-            <ProjectListCard
-              key={index}
-              image={{ src: project.thumbnail, alt: "temp alttext" }}
-              caption={project.title}
-              mouseOver={() => mousoverHandler(project)}
-              mouseOut={() => mouseOutHandler()}
-              item={project}
-              isHovered={project.hover}
-              index={index}
-            />
-          );
-        })}
+      {typeof items !== "undefined" && items.length > 0
+        ? items.map((project, index) => {
+            return (
+              <ProjectListCard
+                key={index}
+                image={{
+                  src: project.metadata.thumbnail.url,
+                  alt: "temp alttext",
+                }}
+                caption={project.title}
+                mouseOver={() => mousoverHandler(project)}
+                mouseOut={() => mouseOutHandler()}
+                item={project}
+                isHovered={project.hover}
+                index={index}
+              />
+            );
+          })
+        : null}
     </StyledList>
   );
 };

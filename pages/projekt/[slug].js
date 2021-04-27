@@ -1,28 +1,46 @@
 import React from "react";
 
-const Post = ({ htmlString, data }) => {
+const Post = ({ slug, project }) => {
   return (
     <div>
-      <h2>Content below {data.title}</h2>
-      <div dangerouslySetInnerHTML={{ __html: htmlString }} />
+      <div dangerouslySetInnerHTML={{ __html: slug }} />
+      <pre>{JSON.stringify(project, null, 2)}</pre>
     </div>
   );
 };
 
 export const getStaticPaths = async () => {
+  const result = await fetch(
+    `https://api.cosmicjs.com/v2/buckets/be520b80-a6ed-11eb-a570-a98d811b502d/objects?pretty=true&query=%7B%22type%22%3A%22projekt%22%7D&read_key=OqwKcIieW5PPB8JBr3HLeRbOPZCpf9l13DzLxyc4tj4dvZR13E&limit=20&props=slug,title,content,metadata,`
+  );
+
+  const data = await result.json();
+  const projects = await data.objects;
+
+  console.log(projects);
+
+  const paths = projects.map((project) => ({
+    params: { slug: project.slug },
+  }));
+
   return {
-    paths: [{ params: { slug: "yo" } }],
+    paths,
     fallback: false,
   };
 };
 
-export const getStaticProps = async ({ params: { slug } }) => {
-  const htmlString = "<h1>hello " + slug + "</h1>";
+export const getStaticProps = async ({ params }) => {
+  const result = await fetch(
+    `https://api.cosmicjs.com/v2/buckets/be520b80-a6ed-11eb-a570-a98d811b502d/objects?pretty=true&query=%7B%22type%22%3A%22projekt%22%7D&read_key=OqwKcIieW5PPB8JBr3HLeRbOPZCpf9l13DzLxyc4tj4dvZR13E&limit=20&props=slug,title,content,metadata,`
+  );
+
+  const data = await result.json();
+  const project = await data.objects.find((p) => p.slug === params.slug);
 
   return {
     props: {
-      htmlString,
-      data: "datapata",
+      slug: params.slug,
+      project,
     },
   };
 };

@@ -19,7 +19,6 @@ const ProjectListCard = ({
     <ListCard
       key={index}
       style={style}
-      className={"portfolio"}
       onMouseOver={() => mouseOver(item)}
       onMouseOut={() => mouseOut(item)}
     >
