@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Layout = ({ children }) => {
   const theme = useContext(ThemeContext);
+  console.log(theme);
   return (
     <StyledDiv
       style={{
