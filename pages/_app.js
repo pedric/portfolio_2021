@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import "../styles/globals.css";
-import { ThemeContext } from "./context";
+import ThemeContext from "./context";
 import themes from "./themes";
 
 function MyApp({ Component, pageProps }) {
