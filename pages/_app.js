@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "../styles/globals.css";
-import ThemeContext from "./context";
-import themes from "./themes";
+import ThemeContext from "./Context";
+import Themes from "./Themes";
 
 function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState("light");

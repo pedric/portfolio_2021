@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import ProjectListCard from "../components/ProjectListCard";
 import ProjectListView from "../components/ProjectListView";
-import { ThemeContext } from "./context";
+import { ThemeContext } from "./Context";
 import Layout from "../components/common/Layout";
 
 export default function Home({ data }) {
