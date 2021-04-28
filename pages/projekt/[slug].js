@@ -10,14 +10,10 @@ const Post = ({ slug, project }) => {
 };
 
 export const getStaticPaths = async () => {
-  const result = await fetch(
-    `https://api.cosmicjs.com/v2/buckets/be520b80-a6ed-11eb-a570-a98d811b502d/objects?pretty=true&query=%7B%22type%22%3A%22projekt%22%7D&read_key=OqwKcIieW5PPB8JBr3HLeRbOPZCpf9l13DzLxyc4tj4dvZR13E&limit=20&props=slug,title,content,metadata,`
-  );
+  const result = await fetch(process.env.PROJECT_API_STRING);
 
   const data = await result.json();
   const projects = await data.objects;
-
-  console.log(projects);
 
   const paths = projects.map((project) => ({
     params: { slug: project.slug },
@@ -30,9 +26,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const result = await fetch(
-    `https://api.cosmicjs.com/v2/buckets/be520b80-a6ed-11eb-a570-a98d811b502d/objects?pretty=true&query=%7B%22type%22%3A%22projekt%22%7D&read_key=OqwKcIieW5PPB8JBr3HLeRbOPZCpf9l13DzLxyc4tj4dvZR13E&limit=20&props=slug,title,content,metadata,`
-  );
+  const result = await fetch(process.env.PROJECT_API_STRING);
 
   const data = await result.json();
   const project = await data.objects.find((p) => p.slug === params.slug);
