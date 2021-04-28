@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import ThemeContext from "../../pages/Context";
 import styled from "styled-components";
-// import { Children } from 'react';
 
 const Layout = ({ children }) => {
   const theme = useContext(ThemeContext);
