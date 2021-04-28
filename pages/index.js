@@ -1,34 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import ProjectListCard from "../components/ProjectListCard";
 import ProjectListView from "../components/ProjectListView";
+import { ThemeContext } from "./context";
+import Layout from "../components/common/Layout";
 
-export default function Home() {
+export default function Home({ data }) {
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch(
-      `https://api.cosmicjs.com/v2/buckets/be520b80-a6ed-11eb-a570-a98d811b502d/objects?pretty=true&query=%7B%22type%22%3A%22projekt%22%7D&read_key=OqwKcIieW5PPB8JBr3HLeRbOPZCpf9l13DzLxyc4tj4dvZR13E&limit=20&props=slug,title,content,metadata,`
-    )
-      .then((result) => result.json())
-      .then((data) => setProjects(data))
-      .catch((error) => setError(error))
-      .finally(() => setIsLoading(false));
+    // fetch(apiString)
+    //   .then((result) => result.json())
+    //   .then((data) => console.log(data))
+    //   .catch((error) => setError(error))
+    //   .finally(() => setIsLoading(false));
   }, []);
 
+  // const theme = useContext(ThemeContext);
+  // console.log("THEME", theme);
+
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Create Next App</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-
-      <main className={styles.main}>
-        <ProjectListView projects={projects} />
-      </main>
+      <Layout>
+        <main>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+          {/* <ProjectListView projects={projects} /> */}
+        </main>
+      </Layout>
     </div>
   );
 }
+
+export const getStaticProps = async ({ params }) => {
+  const result = await fetch(process.env.STARTPAGE_API_STRING);
+  const data = await result.json();
+
+  return {
+    props: {
+      data,
+    },
+  };
+};

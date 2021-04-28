@@ -11,7 +11,6 @@ const Post = ({ slug, project }) => {
 
 export const getStaticPaths = async () => {
   const result = await fetch(process.env.PROJECT_API_STRING);
-
   const data = await result.json();
   const projects = await data.objects;
 
@@ -27,7 +26,6 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const result = await fetch(process.env.PROJECT_API_STRING);
-
   const data = await result.json();
   const project = await data.objects.find((p) => p.slug === params.slug);
 

@@ -7,7 +7,6 @@ const ProjectListView = ({ projects }) => {
 
   useEffect(() => {
     setItems(projects.objects);
-    // console.log(items);
   }, [projects]);
 
   const mousoverHandler = (item) => {
