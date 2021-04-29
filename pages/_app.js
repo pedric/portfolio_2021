@@ -1,16 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import "../styles/globals.css";
-import ThemeContext from "../Context";
+import { ThemeContext, ThemeChanger } from "../Context";
 import themes from "../themes";
 
 function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState("light");
+  const ThemeChangerValue = useMemo(() => {
+    // return { theme, setTheme };
+    return setTheme;
+  }, [theme, setTheme]);
   return (
     <ThemeContext.Provider value={themes[theme]}>
-      <button onClick={() => setTheme("expressive")}>expressive</button>
-      <button onClick={() => setTheme("dark")}>dark</button>
-      <button onClick={() => setTheme("light")}>light</button>
-      <Component {...pageProps} />
+      <ThemeChanger.Provider value={ThemeChangerValue}>
+        <Component {...pageProps} />
+      </ThemeChanger.Provider>
     </ThemeContext.Provider>
   );
 }

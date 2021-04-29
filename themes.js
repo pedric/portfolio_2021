@@ -6,13 +6,13 @@ const themes = {
   },
   dark: {
     primary: "#fff",
-    secondary: "#000",
+    secondary: "#020202",
     accent: "#ccc",
   },
   expressive: {
-    primary: "pink",
-    secondary: "purple",
-    accent: "orange",
+    primary: "#bfffd0",
+    secondary: "#006280",
+    accent: "pink",
   },
 };
 

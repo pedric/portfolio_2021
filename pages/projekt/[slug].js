@@ -1,11 +1,17 @@
 import React from "react";
+import styled from "styled-components";
+import Layout from "../../components/common/Layout";
+import Hero from "../../components/Hero";
 
 const Post = ({ slug, project }) => {
+  const { title, content } = project;
+  const { url } = project.metadata.hero;
   return (
-    <div>
-      <div dangerouslySetInnerHTML={{ __html: slug }} />
+    <Layout>
+      {title && <Hero tagLine={title} image={url} />}
+      {content && <Article dangerouslySetInnerHTML={{ __html: content }} />}
       <pre>{JSON.stringify(project, null, 2)}</pre>
-    </div>
+    </Layout>
   );
 };
 
@@ -36,6 +42,11 @@ export const getStaticProps = async ({ params }) => {
     },
   };
 };
+
+const Article = styled.article`
+  max-width: 640px;
+  margin: 0 auto;
+`;
 
 // https://nextjs.org/learn/basics/dynamic-routes/implement-getstaticprops
 

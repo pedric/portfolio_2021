@@ -44,6 +44,7 @@ const ProjectListView = ({ projects }) => {
                 item={project}
                 isHovered={project.hover}
                 index={index}
+                slug={project.slug}
               />
             );
           })
@@ -52,6 +53,19 @@ const ProjectListView = ({ projects }) => {
   );
 };
 
-export default ProjectListView;
+const StyledList = styled.div`
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
 
-const StyledList = styled.div``;
+  @media (min-width: 540px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: 960px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+`;
+
+export default ProjectListView;

@@ -1,25 +1,33 @@
 import React, { useState, useContext } from "react";
-import ThemeContext from "../../Context";
+import { ThemeContext } from "../../Context";
 import styled from "styled-components";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Layout = ({ children }) => {
   const theme = useContext(ThemeContext);
-  console.log(theme);
+
   return (
-    <StyledDiv
-      style={{
-        "--background": `${theme.secondary}`,
-        "--color": `${theme.primary}`,
-      }}
-    >
-      {children}
-    </StyledDiv>
+    <>
+      <Header />
+      <StyledDiv background={theme.secondary} color={theme.primary}>
+        <main>{children}</main>
+      </StyledDiv>
+      <Footer />
+    </>
   );
 };
 
 const StyledDiv = styled.div`
-  background: var(--background);
-  color: var(--color);
+  background: ${(props) => props.background};
+  color: ${(props) => props.color};
+  min-height: 100vh;
+  padding-top: 84px;
+
+  & main {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 `;
 
 export default Layout;
