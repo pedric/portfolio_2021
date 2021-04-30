@@ -2,12 +2,12 @@ const themes = {
   light: {
     primary: "#000",
     secondary: "#fff",
-    accent: "#ccc",
+    accent: "#00ceff",
   },
   dark: {
     primary: "#fff",
     secondary: "#020202",
-    accent: "#ccc",
+    accent: "#b26bff",
   },
   expressive: {
     primary: "#bfffd0",

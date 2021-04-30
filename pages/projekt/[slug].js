@@ -2,15 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import Layout from "../../components/common/Layout";
 import Hero from "../../components/Hero";
+import LightBox from "../../components/LightBox";
 
 const Post = ({ slug, project }) => {
   const { title, content } = project;
   const { url } = project.metadata.hero;
+  const { gallery } = project.metadata;
+
   return (
     <Layout>
       {title && <Hero tagLine={title} image={url} />}
+      {gallery.length > 0 && <LightBox images={gallery} />}
       {content && <Article dangerouslySetInnerHTML={{ __html: content }} />}
-      <pre>{JSON.stringify(project, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(project, null, 2)}</pre> */}
     </Layout>
   );
 };

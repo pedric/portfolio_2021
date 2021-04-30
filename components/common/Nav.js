@@ -1,23 +1,41 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { ThemeContext } from "../../Context";
 import styled from "styled-components";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import ThemeToggler from "../ThemeToggler";
 
 const Nav = () => {
+  const theme = useContext(ThemeContext);
+  const router = useRouter();
+  const [isProjectPage, setIsProjectPage] = useState(false);
+  useEffect(() => {
+    const match = window.location.href
+      ? window.location.href.match(/projekt/i)
+      : 0;
+    match && match.length > 0
+      ? setIsProjectPage(true)
+      : setIsProjectPage(false);
+  }, []);
+
   return (
-    <StyledNav>
+    <StyledNav accent={theme.accent}>
       <ul>
-        <li>
+        <li className={router.asPath == "/" ? "active" : ""}>
           <Link href='/'>
             <a>Start</a>
           </Link>
         </li>
-        <li>
+        <li
+          className={
+            router.asPath == "/projekt" || isProjectPage ? "active" : ""
+          }
+        >
           <Link href='/projekt'>
             <a>Projekt</a>
           </Link>
         </li>
-        <li>
+        <li className={router.asPath == "/om" ? "active" : ""}>
           <Link href='/om'>
             <a>Om</a>
           </Link>
@@ -42,9 +60,19 @@ const StyledNav = styled.nav`
     grid-template-columns: auto auto auto auto;
   }
 
+  li.active > a:before {
+    color: ${(props) => props.accent};
+  }
+
   a {
     display: block;
     text-align: center;
+
+    &:before {
+      content: "•";
+      color: transparent;
+    }
+
     &:hover {
       text-decoration: underline;
     }

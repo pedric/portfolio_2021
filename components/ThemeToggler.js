@@ -14,7 +14,7 @@ const ThemeToggler = () => {
 
   return (
     <Toggler state={value} theme={theme}>
-      <span className='sun'>🌞</span>
+      <span className='light'>🌞</span>
       <label htmlFor='mode'>
         <div className='ball'></div>
       </label>
@@ -25,7 +25,7 @@ const ThemeToggler = () => {
         value={value}
         onChange={handleChange}
       />
-      <span className='moon'>🌛</span>
+      <span className='dark'>🌛</span>
     </Toggler>
   );
 };
@@ -34,12 +34,15 @@ const Toggler = styled.div`
   position: relative;
 
   span {
+    display: none;
     position: absolute;
-    top: -4px;
-    &.sun {
+    top: -1px;
+    font-size: 13px;
+    z-index: 1;
+    &.light {
       left: 2px;
     }
-    &.moon {
+    &.dark {
       right: 19px;
     }
   }
@@ -48,23 +51,24 @@ const Toggler = styled.div`
     position: relative;
     width: 40px;
     height: 20px;
-    background: #88888859;
+    background: ${(props) => props.theme.accent};
     display: inline-block;
     margin: 0;
     border-radius: 10px;
-    z-index: 1;
+    z-index: 0;
     &:hover {
       cursor: pointer;
     }
 
     .ball {
       position: absolute;
-      top: 1px;
-      left: ${(props) => (props.state ? "20px" : "1px")};
-      width: 18px;
-      height: 18px;
-      border-radius: 9px;
-      background: ${(props) => props.theme.primary};
+      top: 2px;
+      left: ${(props) => (props.state ? "22px" : "2px")};
+      width: 16px;
+      height: 16px;
+      border-radius: 8px;
+      background: ${(props) => props.theme.secondary};
+      z-index: 2;
     }
   }
 
