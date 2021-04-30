@@ -57,7 +57,8 @@ const StyledNav = styled.nav`
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: repeat(4, auto);
+    grid-column-gap: 8px;
   }
 
   li.active > a:before {
@@ -73,9 +74,9 @@ const StyledNav = styled.nav`
       color: transparent;
     }
 
-    &:hover {
-      text-decoration: underline;
-    }
+    // &:hover {
+    //   text-decoration: underline;
+    // }
   }
 `;
 

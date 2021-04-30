@@ -26,6 +26,10 @@ const StyledHeader = styled.header`
   padding: 8px 16px;
   background: ${(props) => props.background};
   color: ${(props) => props.color};
+
+  @media (max-width: 400px) {
+    flex-direction: column;
+  }
 `;
 
 export default Header;

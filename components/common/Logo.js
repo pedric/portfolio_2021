@@ -16,7 +16,7 @@ const Logo = ({ fill }) => {
   return (
     <LogoWrapper fill={fill}>
       <Link href='/'>
-        <a>
+        <a className='no-effect'>
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 882.7 926.43'>
             <g>
               <g>

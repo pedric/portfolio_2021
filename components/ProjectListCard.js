@@ -25,7 +25,7 @@ const ProjectListCard = ({
       onMouseOut={() => mouseOut(item)}
     >
       <Link href={`/projekt/${slug}`}>
-        <a>
+        <a className='no-effect'>
           <img src={image.src} alt={caption} />
         </a>
       </Link>
@@ -35,10 +35,14 @@ const ProjectListCard = ({
 
 const ListCard = styled.div`
   position: relative;
-  border-radius: 20px;
+  border-radius: 16px;
   background-color: gray;
-  padding-top: 200px;
+  padding-top: 66.6%;
   overflow: hidden;
+
+  & > a {
+    position: initial;
+  }
 
   & img {
     position: absolute;
