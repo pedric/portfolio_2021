@@ -2,12 +2,12 @@ const themes = {
   light: {
     primary: "#000",
     secondary: "#fff",
-    accent: "#00ceff",
+    accent: "rgba(0,206,255,.75)",
   },
   dark: {
     primary: "#fff",
     secondary: "#020202",
-    accent: "#b26bff",
+    accent: "rgba(178,107,255,.75)",
   },
   expressive: {
     primary: "#bfffd0",
@@ -17,3 +17,6 @@ const themes = {
 };
 
 export default themes;
+
+//#00ceff
+//#b26bff

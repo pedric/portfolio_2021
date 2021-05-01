@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Layout from "../../components/common/Layout";
 import Hero from "../../components/Hero";
-import LightBox from "../../components/LightBox";
+import Gallery from "../../components/Gallery";
 
 const Post = ({ slug, project }) => {
+  /* editors can insert gallery in content with [gallery] */
+  const [contentBlocks, setContentBlocks] = useState([]);
+  useEffect(() => {
+    const contentBlocksArray = content.split("<p>[gallery]</p>");
+    setContentBlocks(contentBlocksArray);
+  }, [project]);
+  /* editors can insert gallery in content with [gallery] */
   const { title, content } = project;
   const { url } = project.metadata.hero;
   const { gallery } = project.metadata;
@@ -12,9 +19,18 @@ const Post = ({ slug, project }) => {
   return (
     <Layout>
       {title && <Hero tagLine={title} image={url} />}
-      {gallery.length > 0 && <LightBox images={gallery} />}
-      {content && <Article dangerouslySetInnerHTML={{ __html: content }} />}
-      {/* <pre>{JSON.stringify(project, null, 2)}</pre> */}
+
+      <Article>
+        {contentBlocks[0] && (
+          <div dangerouslySetInnerHTML={{ __html: contentBlocks[0] }}></div>
+        )}
+
+        {gallery.length > 0 && <Gallery images={gallery} />}
+
+        {contentBlocks[1] && (
+          <div dangerouslySetInnerHTML={{ __html: contentBlocks[1] }}></div>
+        )}
+      </Article>
     </Layout>
   );
 };

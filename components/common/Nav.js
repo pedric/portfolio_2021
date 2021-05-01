@@ -11,7 +11,7 @@ const Nav = () => {
   const [isProjectPage, setIsProjectPage] = useState(false);
   useEffect(() => {
     const match = window.location.href
-      ? window.location.href.match(/projekt/i)
+      ? window.location.href.match(/projekt/i) // to find patterns like projekt/slug
       : 0;
     match && match.length > 0
       ? setIsProjectPage(true)
@@ -52,6 +52,10 @@ const StyledNav = styled.nav`
   max-width: 100%;
   width: 240px;
   z-index: 1;
+
+  @media (max-width: 400px) {
+    width: 100%;
+  }
 
   ul {
     list-style: none;

@@ -34,6 +34,10 @@ const StyledDiv = styled.div`
   min-height: 100vh;
   padding-top: 84px;
 
+  @media (max-width: 400px) {
+    padding-top: 145px;
+  }
+
   & main {
     max-width: 1200px;
     margin: 0 auto;
