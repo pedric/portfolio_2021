@@ -10,6 +10,7 @@ const ThemeToggler = () => {
   const handleChange = () => {
     setValue(!value);
     setTheme(value ? "dark" : "light");
+    document.body.style.background = theme.primary;
   };
 
   return (

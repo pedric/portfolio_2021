@@ -72,6 +72,7 @@ const StyledNav = styled.nav`
   a {
     display: block;
     text-align: center;
+    font-size: 16px;
 
     &:before {
       content: "•";
