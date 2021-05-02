@@ -1,20 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
+import { ThemeContext } from "../Context";
+import Swipe from "../classes/Swipe";
 
 const Gallery = ({ images }) => {
+  const theme = useContext(ThemeContext);
+  const [swipeClass, setSwipeClass] = useState();
   const [activeImage, setActiveImage] = useState(null);
   const [collection, setCollection] = useState([]);
   const modal = useRef(null);
   useEffect(() => {
     setActiveImage(0);
     setCollection(images || []);
+    setSwipeClass(new Swipe());
   }, []);
 
   useEffect(() => {
     if (modal.current) {
       window.addEventListener("resize", adjustHeight, false);
     }
-
     return () => {
       window.removeEventListener("resize", adjustHeight);
     };
@@ -22,6 +26,31 @@ const Gallery = ({ images }) => {
 
   const adjustHeight = () => {
     modal.current.style = `${modal.current.offsetWidth}px`;
+  };
+
+  const swipe = () => {
+    const start = { ...swipeClass.swipeStart };
+    const end = { ...swipeClass.swipeEnd };
+    const minSwipeInPixels = 20;
+    if (typeof start.x === "number") {
+      const horizontalMove = start.x - end.x;
+      const verticalmove = start.y - end.y;
+      const moveWasHorizontal =
+        Math.abs(horizontalMove) > Math.abs(verticalmove);
+      if (moveWasHorizontal && Math.abs(horizontalMove) > minSwipeInPixels) {
+        if (horizontalMove > 0) {
+          displayNext();
+        } else {
+          displayPrevious();
+        }
+      }
+    }
+  };
+
+  const displayPrevious = () => {
+    activeImage === 0
+      ? setActiveImage(collection.length - 1)
+      : setActiveImage((prev) => prev - 1);
   };
 
   const displayNext = () => {
@@ -36,6 +65,19 @@ const Gallery = ({ images }) => {
         <Modal
           ref={modal}
           onClick={displayNext}
+          onTouchStart={(e) =>
+            swipeClass.setStartPoints(
+              e.touches[0].screenX,
+              e.touches[0].screenY
+            )
+          }
+          onTouchEnd={(e) => {
+            swipeClass.setEndPoints(
+              e.changedTouches[0].screenX,
+              e.changedTouches[0].screenY
+            );
+            swipe();
+          }}
           style={{
             "--height": modal.current
               ? `${modal.current.offsetWidth}px`
@@ -49,12 +91,18 @@ const Gallery = ({ images }) => {
         {collection && collection.length > 0
           ? collection.map((image, index) => {
               return (
-                <div
+                <StyledThumb
+                  className={
+                    typeof activeImage === "number" && activeImage === index
+                      ? "active"
+                      : ""
+                  }
                   key={`${image}_${index}`}
                   onClick={() => setActiveImage(index)}
-                >
-                  <img src={image.gallery_image.url} alt='#' />
-                </div>
+                  image={image.gallery_image.url}
+                  color={theme.accent}
+                  title={`gallery thumb ${index + 1}`}
+                ></StyledThumb>
               );
             })
           : null}
@@ -70,6 +118,8 @@ const Modal = styled.aside`
   width: 100%;
   height: var(--height);
   background: rgba(150, 150, 150, 0.05);
+  // border: 1px solid rgba(150, 150, 150, 0.05);
+  // border-radius: 5px;
 
   img {
     max-width: 100%;
@@ -79,35 +129,39 @@ const Modal = styled.aside`
 
 const ThumbsWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   margin: 0;
   padding: 8px 0 8px;
   background: rgba(150, 150, 150, 0.05);
+`;
 
-  > div {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    overflow: hidden;
-    margin: 4px;
+const StyledThumb = styled.div`
+  position: relative;
+  width: calc(25% - 8px);
+  height: 80px;
+  max-width: 100px;
+  // overflow: hidden;
+  margin: 4px;
+  background-image: url(${(props) => props.image});
+  background-size: cover;
+  background-position: center;
 
-    &:hover {
-      cursor: pointer;
-      opacity: 0.8;
-    }
+  &.active:after {
+    content: "";
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: ${(props) => props.color};
+  }
 
-    > img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 150%;
-      min-width: 100%;
-      max-height: 150%;
-      min-height: 100%;
-    }
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
   }
 `;
 
