@@ -53,7 +53,7 @@ const StyledNav = styled.nav`
   width: 240px;
   z-index: 1;
 
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
     width: 100%;
   }
 

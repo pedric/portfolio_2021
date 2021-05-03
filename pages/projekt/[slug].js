@@ -64,7 +64,7 @@ export const getStaticProps = async ({ params }) => {
 };
 
 const Article = styled.article`
-  max-width: 640px;
+  max-width: 700px;
   margin: 0 auto;
 `;
 

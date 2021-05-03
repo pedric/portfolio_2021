@@ -20,7 +20,11 @@ const Layout = ({ children }) => {
         />
       </Head>
       <Header />
-      <StyledDiv background={theme.secondary} color={theme.primary}>
+      <StyledDiv
+        background={theme.secondary}
+        color={theme.primary}
+        accent={theme.accent}
+      >
         <main>{children}</main>
       </StyledDiv>
       <Footer />
@@ -36,6 +40,20 @@ const StyledDiv = styled.div`
 
   @media (max-width: 400px) {
     padding-top: 145px;
+  }
+
+  a {
+    background: ${(props) => props.accent};
+    padding: 0px 1px;
+  }
+
+  blockquote {
+    p {
+      font-size: 34px;
+      text-align: center;
+      background: ${(props) => props.color};
+      color: ${(props) => props.background};
+    }
   }
 
   & main {

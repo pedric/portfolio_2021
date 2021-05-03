@@ -13,6 +13,7 @@ body {
   font-family: "Silka", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-size: 18px;
+  line-height: 1.63;
 }
 
 a {
@@ -31,6 +32,10 @@ h1 {
 
 h2 {
   font-size: 21px;
+}
+
+h4 {
+  margin-bottom: 0px;
 }
 
 @media (max-width: 960px) {

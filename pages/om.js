@@ -11,13 +11,12 @@ const AboutPage = ({ pageData }) => {
     <Layout>
       {tagline && <Hero tagLine={tagline} image={cover_image.url} />}
       {content && <Article dangerouslySetInnerHTML={{ __html: content }} />}
-      {/* <pre>{JSON.stringify(pageData, null, 2)}</pre> */}
     </Layout>
   );
 };
 
 const Article = styled.article`
-  max-width: 640px;
+  max-width: 700px;
   margin: 0 auto;
 `;
 

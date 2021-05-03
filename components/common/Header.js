@@ -27,7 +27,7 @@ const StyledHeader = styled.header`
   background: ${(props) => props.background};
   color: ${(props) => props.color};
 
-  @media (max-width: 400px) {
+  @media (max-width: 500px) {
     flex-direction: column;
   }
 `;
