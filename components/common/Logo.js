@@ -7,7 +7,7 @@ const LogoWrapper = styled.div`
   display: inline-block;
   margin: 0;
   & svg {
-    width: 100%;
+    width: 60px;
     fill: ${(props) => props.fill};
   }
 `;
