@@ -51,6 +51,8 @@ const ListCard = styled.div`
     transform: translate(-50%, -50%);
     min-width: 100%;
     min-height: 100%;
+    max-width: 130%;
+    max-height: 130%;
     transition: none;
   }
 `;
