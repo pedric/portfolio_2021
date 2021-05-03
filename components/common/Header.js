@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Logo from "./Logo";
 import Nav from "./Nav";
 import styled from "styled-components";
@@ -6,11 +6,17 @@ import { ThemeContext } from "../../Context";
 
 const Header = () => {
   const theme = useContext(ThemeContext);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
   return (
-    <StyledHeader background={theme.secondary} color={theme.primary}>
-      <Logo fill={theme.primary} />
-      <Nav />
-    </StyledHeader>
+    isLoading != true && (
+      <StyledHeader background={theme.secondary} color={theme.primary}>
+        <Logo fill={theme.primary} />
+        <Nav />
+      </StyledHeader>
+    )
   );
 };
 
