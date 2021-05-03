@@ -36,9 +36,10 @@ const ProjectListCard = ({
 const ListCard = styled.div`
   position: relative;
   border-radius: 16px;
-  background-color: gray;
+  background-color: rgba(0, 0, 0, 0.1);
   padding-top: 66.6%;
   overflow: hidden;
+  height: 0;
 
   & > a {
     position: initial;

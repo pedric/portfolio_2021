@@ -118,12 +118,11 @@ const Modal = styled.aside`
   width: 100%;
   height: var(--height);
   background: rgba(150, 150, 150, 0.05);
-  // border: 1px solid rgba(150, 150, 150, 0.05);
-  // border-radius: 5px;
+  margin-top: 24px;
 
   img {
     max-width: 100%;
-    max-height: 100%;
+    max-height: var(--height);
   }
 `;
 
@@ -132,7 +131,7 @@ const ThumbsWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  margin: 0;
+  margin: 0 0 24px 0;
   padding: 8px 0 8px;
   background: rgba(150, 150, 150, 0.05);
 `;

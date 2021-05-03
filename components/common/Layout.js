@@ -47,6 +47,10 @@ const StyledDiv = styled.div`
     padding: 0px 1px;
   }
 
+  img {
+    width: 100%;
+  }
+
   blockquote {
     p {
       font-size: 34px;
