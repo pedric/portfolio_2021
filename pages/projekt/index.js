@@ -2,16 +2,24 @@ import React from "react";
 import Layout from "../../components/common/Layout";
 import Hero from "../../components/Hero";
 import ProjectListView from "../../components/ProjectListView";
+import Head from "next/head";
 
 const ProjectPage = ({ pageData, projects }) => {
   const { tagline, cover_image } = pageData.object.metadata;
   return (
-    <Layout>
-      {tagline && <Hero tagLine={tagline} />}
-      {/* <pre>{JSON.stringify(pageData, null, 2)}</pre>
+    <>
+      <Head>
+        <title>Projekt | Fredrik Larsson design</title>
+        <link rel='icon' href='/favicon.ico' />
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      </Head>
+      <Layout>
+        {tagline && <Hero tagLine={tagline} />}
+        {/* <pre>{JSON.stringify(pageData, null, 2)}</pre>
       <pre>{JSON.stringify(projects, null, 2)}</pre> */}
-      <ProjectListView projects={projects} />
-    </Layout>
+        <ProjectListView projects={projects} />
+      </Layout>
+    </>
   );
 };
 

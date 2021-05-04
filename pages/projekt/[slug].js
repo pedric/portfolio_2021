@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Layout from "../../components/common/Layout";
 import Hero from "../../components/Hero";
 import Gallery from "../../components/Gallery";
+import Head from "next/head";
 
 const Post = ({ slug, project }) => {
   /* editors can insert gallery in content with [gallery] */
@@ -17,21 +18,28 @@ const Post = ({ slug, project }) => {
   const { gallery } = project.metadata;
 
   return (
-    <Layout>
-      {title && <Hero tagLine={title} image={url} />}
+    <>
+      <Head>
+        <title>{title} | Fredrik Larsson design</title>
+        <link rel='icon' href='/favicon.ico' />
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      </Head>
+      <Layout>
+        {title && <Hero tagLine={title} image={url} />}
 
-      <Article>
-        {contentBlocks[0] && (
-          <div dangerouslySetInnerHTML={{ __html: contentBlocks[0] }}></div>
-        )}
+        <Article>
+          {contentBlocks[0] && (
+            <div dangerouslySetInnerHTML={{ __html: contentBlocks[0] }}></div>
+          )}
 
-        {gallery.length > 0 && <Gallery images={gallery} />}
+          {gallery.length > 0 && <Gallery images={gallery} />}
 
-        {contentBlocks[1] && (
-          <div dangerouslySetInnerHTML={{ __html: contentBlocks[1] }}></div>
-        )}
-      </Article>
-    </Layout>
+          {contentBlocks[1] && (
+            <div dangerouslySetInnerHTML={{ __html: contentBlocks[1] }}></div>
+          )}
+        </Article>
+      </Layout>
+    </>
   );
 };
 
