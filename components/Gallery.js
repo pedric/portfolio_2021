@@ -131,6 +131,7 @@ const Modal = styled.aside`
   img {
     max-width: 100%;
     max-height: var(--height);
+    width: auto;
   }
 `;
 
