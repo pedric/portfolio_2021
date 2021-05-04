@@ -23,6 +23,14 @@ const Post = ({ slug, project }) => {
         <title>{title} | Fredrik Larsson design</title>
         <link rel='icon' href='/favicon.ico' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        <meta
+          property='og:title'
+          content={`${title} | Fredrik Larsson design`}
+        />
+        <meta
+          property='og:image'
+          content={gallery.length > 0 ? gallery[0].gallery_image.url : ""}
+        />
       </Head>
       <Layout>
         {title && <Hero tagLine={title} image={url} />}

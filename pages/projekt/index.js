@@ -12,6 +12,10 @@ const ProjectPage = ({ pageData, projects }) => {
         <title>Projekt | Fredrik Larsson design</title>
         <link rel='icon' href='/favicon.ico' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        <meta
+          property='og:title'
+          content={`Projekt | Fredrik Larsson design`}
+        />
       </Head>
       <Layout>
         {tagline && <Hero tagLine={tagline} />}

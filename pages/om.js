@@ -13,6 +13,7 @@ const AboutPage = ({ pageData }) => {
         <title>Om Fredrik Larsson design | Fredrik Larsson design</title>
         <link rel='icon' href='/favicon.ico' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        <meta property='og:title' content={`Om | Fredrik Larsson design`} />
       </Head>
       <Layout>
         {tagline && <Hero tagLine={tagline} image={cover_image.url} />}
