@@ -91,6 +91,7 @@ const Gallery = ({ images }) => {
               "--height": modal.current
                 ? `${modal.current.offsetWidth}px`
                 : `640px`,
+              width: "auto",
             }}
           />
         </Modal>
