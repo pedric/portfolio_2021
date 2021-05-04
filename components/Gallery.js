@@ -84,7 +84,15 @@ const Gallery = ({ images }) => {
               : `640px`,
           }}
         >
-          <img src={collection[activeImage].gallery_image.url} alt='#' />
+          <img
+            src={collection[activeImage].gallery_image.url}
+            alt='#'
+            style={{
+              "--height": modal.current
+                ? `${modal.current.offsetWidth}px`
+                : `640px`,
+            }}
+          />
         </Modal>
       ) : null}
       <ThumbsWrapper>
