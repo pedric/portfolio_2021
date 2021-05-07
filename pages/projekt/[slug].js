@@ -37,13 +37,13 @@ const Post = ({ slug, project }) => {
 
         <Article>
           {contentBlocks[0] && (
-            <div dangerouslySetInnerHTML={{ __html: contentBlocks[0] }}></div>
+            <Div dangerouslySetInnerHTML={{ __html: contentBlocks[0] }}></Div>
           )}
 
           {gallery.length > 0 && <Gallery images={gallery} />}
 
           {contentBlocks[1] && (
-            <div dangerouslySetInnerHTML={{ __html: contentBlocks[1] }}></div>
+            <Div dangerouslySetInnerHTML={{ __html: contentBlocks[1] }}></Div>
           )}
         </Article>
       </Layout>
@@ -82,6 +82,10 @@ export const getStaticProps = async ({ params }) => {
 const Article = styled.article`
   max-width: 700px;
   margin: 0 auto;
+`;
+
+const Div = styled.div`
+  padding: 0 16px;
 `;
 
 // https://nextjs.org/learn/basics/dynamic-routes/implement-getstaticprops
